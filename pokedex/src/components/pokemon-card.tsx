@@ -3,7 +3,7 @@ import Pokemon from '../models/pokemon';
 import './pokemon-card.css';
 import formatDate from '../helpers/format-date';
 import formatType from '../helpers/format-type';
-import Route, { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 type Props = {
     pokemon: Pokemon,

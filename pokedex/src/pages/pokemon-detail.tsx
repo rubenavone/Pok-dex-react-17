@@ -1,20 +1,16 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Pokemon from '../models/pokemon';
-import mockPockemon from '../models/mock-pokemon';
+import PokemonService from '../service/pokemon-service';
 import formatDate from '../helpers/format-date';
 import formatType from '../helpers/format-type';
 
 const PokemonsDetail: FunctionComponent = () => {
-  const { id } = useParams();
+  const { id } = useParams<string>();
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
 
   useEffect(() => {
-    mockPockemon.forEach(pokemon => {
-      if (id === pokemon.id.toString()) {
-        setPokemon(pokemon);
-      }
-    })
+    PokemonService.getPokemon(+id).then(pokemon => setPokemon(pokemon));
   }, [id])
 
   return (
